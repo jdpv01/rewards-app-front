@@ -23,10 +23,6 @@ const SignInForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
-  // useEffect(() => {
-  //   emailRef.current.focus;
-  // }, [])
-
   useEffect(() => {
     setErrorMessage('');
   }, [email, password])
@@ -51,15 +47,14 @@ const SignInForm = () => {
       setSuccess(true);
     } catch (err) {
       if (!err?.response) {
-        setErrorMessage('No Server Response');
+        setErrorMessage('No hay respuesta del servidor');
       } else if (err.response?.status === 400) {
-        setErrorMessage('400: Falta el email or la contraseña');
+        setErrorMessage('400: Email o contraseña incorrectos');
       } else if (err.response?.status === 401) {
-        setErrorMessage('401: No autorizado');
+        setErrorMessage('401: Cuenta no registrada');
       } else {
-        setErrorMessage('Iniciar sesión falló');
+        setErrorMessage('Fallo de inicio de sesión');
       }
-      // errorRef.current.focus();
     }
   }
 
@@ -70,7 +65,6 @@ const SignInForm = () => {
         ) : (
         <form
           onSubmit={handleSubmit}
-          noValidate
         >
           <p ref={errorRef} className={errorMessage ? "errmsg" : "offscreen"}
              aria-live="assertive">{errorMessage}</p>

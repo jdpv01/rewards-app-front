@@ -48,7 +48,7 @@ Several quick start options are available:
 - Product Detail
 - Cart
 - Checkout
-- Invoice
+- PointsResume
 - My Account (Change Password, Setting, Saved Card)
 - Star Zone Page
 - Orders

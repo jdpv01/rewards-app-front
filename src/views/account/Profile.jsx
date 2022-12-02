@@ -4,9 +4,9 @@ const ChangePasswordForm = lazy(() =>
   import("../../components/account/ChangePasswordForm")
 );
 const SettingForm = lazy(() => import("../../components/account/SettingForm"));
-const CardListForm = lazy(() =>
-  import("../../components/account/CardListForm")
-);
+// const CardListForm = lazy(() =>
+//   import("../../components/account/CardListForm")
+// );
 
 class MyProfileView extends Component {
   state = { imagePreview: "", isDeleting: false };
@@ -52,7 +52,6 @@ class MyProfileView extends Component {
             <br></br>
             <SettingForm />
             <br></br>
-            <CardListForm />
           </div>
         </div>
       </div>

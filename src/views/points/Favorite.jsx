@@ -2,24 +2,35 @@ import React, { Component, lazy } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as IconHeartFill } from "bootstrap-icons/icons/heart-fill.svg";
 import { ReactComponent as IconTrash } from "bootstrap-icons/icons/trash.svg";
-import { ReactComponent as IconChevronRight } from "bootstrap-icons/icons/chevron-right.svg";
+import { ReactComponent as IconCamera } from "bootstrap-icons/icons/camera.svg";
 import { ReactComponent as IconChevronLeft } from "bootstrap-icons/icons/chevron-left.svg";
 import { ReactComponent as IconCalenderDate } from "bootstrap-icons/icons/calendar-date.svg";
 import { ReactComponent as IconTruck } from "bootstrap-icons/icons/truck.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-const CouponApplyForm = lazy(() =>
-  import("../../components/others/CouponApplyForm")
-);
+import Webcam from "react-webcam";
 
-class CartView extends Component {
+class FavoriteView extends Component {
   constructor(props) {
     super();
     this.state = {};
   }
-  onSubmitApplyCouponCode = async (values) => {
-    alert(JSON.stringify(values));
+
+  setRef = webcam => {
+    this.webcam=webcam;
+  }
+
+  state = {
+    image:null
+  }
+
+  photo = () => {
+    const photo = this.webcam.getScreenshot();
+    this.setState({
+      image:photo
+    })
   };
+
   render() {
     return (
       <React.Fragment>
@@ -38,10 +49,10 @@ class CartView extends Component {
                         {/*<th scope="col" width={120}>*/}
                         {/*  Quantity*/}
                         {/*</th>*/}
+                        <th scope="col" className="text-end" width={130}></th>
                         <th scope="col" width={150}>
                           Acumulas:
                         </th>
-                        <th scope="col" className="text-end" width={130}></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -167,9 +178,6 @@ class CartView extends Component {
                   </table>
                 </div>
                 <div className="card-footer">
-                  <Link to="/checkout" className="btn btn-primary float-end">
-                    Escanear factura <IconChevronRight className="i-va" />
-                  </Link>
                   <Link to="/" className="btn btn-secondary">
                     <IconChevronLeft className="i-va" /> Regresar
                   </Link>
@@ -182,6 +190,11 @@ class CartView extends Component {
               </div>
             </div>
             <div className="col-md-3">
+              <Webcam audio={false} height={350} ref={this.setRef} screenshotFormat="image/jpeg" width={350}/>
+              <Link to="/camera" className="btn btn-primary float-end" onClick={this.photo}>
+                Escanear factura <IconCamera className="i-va" />
+              </Link>
+              <img src={this.state.image} alt=""/>
               {/*<div className="card mb-3">*/}
               {/*  <div className="card-body">*/}
               {/*    <CouponApplyForm onSubmit={this.onSubmitApplyCouponCode} />*/}
@@ -189,58 +202,58 @@ class CartView extends Component {
               {/*</div>*/}
               {/*<div className="card">*/}
               {/*  <div className="card-body">*/}
-              {/*    <dl className="row border-bottom">*/}
-              {/*      <dt className="col-6">Total price:</dt>*/}
-              {/*      <dd className="col-6 text-end">+200</dd>*/}
+                  {/*<dl className="row border-bottom">*/}
+                  {/*  <dt className="col-6">Total price:</dt>*/}
+                  {/*  <dd className="col-6 text-end">+200</dd>*/}
 
-              {/*      <dt className="col-6 text-success">Discount:</dt>*/}
-              {/*      <dd className="col-6 text-success text-end">-$200</dd>*/}
-              {/*      <dt className="col-6 text-success">*/}
-              {/*        Coupon:{" "}*/}
-              {/*        <span className="small text-muted">EXAMPLECODE</span>{" "}*/}
-              {/*      </dt>*/}
-              {/*      <dd className="col-6 text-success text-end">+200</dd>*/}
-              {/*    </dl>*/}
-              {/*    <dl className="row">*/}
-              {/*      <dt className="col-6">Total:</dt>*/}
-              {/*      <dd className="col-6 text-end  h5">*/}
-              {/*        <strong>$1,350</strong>*/}
-              {/*      </dd>*/}
-              {/*    </dl>*/}
-              {/*    <hr />*/}
-              {/*    <p className="text-center">*/}
-              {/*      <img*/}
-              {/*        src="../../images/payment/payments.webp"*/}
-              {/*        alt="..."*/}
-              {/*        height={26}*/}
-              {/*      />*/}
-              {/*    </p>*/}
+                  {/*  <dt className="col-6 text-success">Discount:</dt>*/}
+                  {/*  <dd className="col-6 text-success text-end">-$200</dd>*/}
+                  {/*  <dt className="col-6 text-success">*/}
+                  {/*    Coupon:{" "}*/}
+                  {/*    <span className="small text-muted">EXAMPLECODE</span>{" "}*/}
+                  {/*  </dt>*/}
+                  {/*  <dd className="col-6 text-success text-end">+200</dd>*/}
+                  {/*</dl>*/}
+                  {/*<dl className="row">*/}
+                  {/*  <dt className="col-6">Total:</dt>*/}
+                  {/*  <dd className="col-6 text-end  h5">*/}
+                  {/*    <strong>$1,350</strong>*/}
+                  {/*  </dd>*/}
+                  {/*</dl>*/}
+
+                  {/*<p className="text-center">*/}
+                  {/*  <img*/}
+                  {/*    src="../../images/payment/payments.webp"*/}
+                  {/*    alt="..."*/}
+                  {/*    height={26}*/}
+                  {/*  />*/}
+                  {/*</p>*/}
               {/*  </div>*/}
               {/*</div>*/}
             </div>
-          </div>
-        </div>
-        <div className="bg-light border-top p-4">
-          <div className="container">
-            {/*<h6>Payment and refund policy</h6>*/}
-            {/*<p>*/}
-            {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do*/}
-            {/*  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut*/}
-            {/*  enim ad minim veniam, quis nostrud exercitation ullamco laboris*/}
-            {/*  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in*/}
-            {/*  reprehenderit in voluptate velit esse cillum dolore eu fugiat*/}
-            {/*  nulla pariatur. Excepteur sint occaecat cupidatat non proident,*/}
-            {/*  sunt in culpa qui officia deserunt mollit anim id est laborum.*/}
-            {/*</p>*/}
-            {/*<p>*/}
-            {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do*/}
-            {/*  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut*/}
-            {/*  enim ad minim veniam, quis nostrud exercitation ullamco laboris*/}
-            {/*  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in*/}
-            {/*  reprehenderit in voluptate velit esse cillum dolore eu fugiat*/}
-            {/*  nulla pariatur. Excepteur sint occaecat cupidatat non proident,*/}
-            {/*  sunt in culpa qui officia deserunt mollit anim id est laborum.*/}
-            {/*</p>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
+        {/*<div className="bg-light border-top p-4">*/}
+        {/*  <div className="container">*/}
+        {/*    <h6>Payment and refund policy</h6>*/}
+        {/*    <p>*/}
+        {/*      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do*/}
+        {/*      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut*/}
+        {/*      enim ad minim veniam, quis nostrud exercitation ullamco laboris*/}
+        {/*      nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in*/}
+        {/*      reprehenderit in voluptate velit esse cillum dolore eu fugiat*/}
+        {/*      nulla pariatur. Excepteur sint occaecat cupidatat non proident,*/}
+        {/*      sunt in culpa qui officia deserunt mollit anim id est laborum.*/}
+        {/*    </p>*/}
+        {/*    <p>*/}
+        {/*      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do*/}
+        {/*      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut*/}
+        {/*      enim ad minim veniam, quis nostrud exercitation ullamco laboris*/}
+        {/*      nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in*/}
+        {/*      reprehenderit in voluptate velit esse cillum dolore eu fugiat*/}
+        {/*      nulla pariatur. Excepteur sint occaecat cupidatat non proident,*/}
+        {/*      sunt in culpa qui officia deserunt mollit anim id est laborum.*/}
+        {/*    </p>*/}
           </div>
         </div>
       </React.Fragment>
@@ -248,4 +261,4 @@ class CartView extends Component {
   }
 }
 
-export default CartView;
+export default FavoriteView;

@@ -3,7 +3,7 @@ import { ReactComponent as IconBootstrapFill } from "bootstrap-icons/icons/boots
 import { ReactComponent as IconPrinter } from "bootstrap-icons/icons/printer.svg";
 import { ReactComponent as IconDownload } from "bootstrap-icons/icons/download.svg";
 
-const Invoice = () => {
+const PointsResume = () => {
   return (
     <div className="container-fluid bg-secondary p-3">
       <div className="bg-white p-5">
@@ -153,4 +153,4 @@ const Invoice = () => {
     </div>
   );
 };
-export default Invoice;
+export default PointsResume;

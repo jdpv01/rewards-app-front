@@ -42,12 +42,12 @@ const TopMenu = () => {
               </button>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <Link className="dropdown-item" to="/account/signin">
+                  <Link className="dropdown-item" to="/blog">
                     Comenta y gana!
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/account/signin">
+                  <Link className="dropdown-item" to="/**">
                     Responde nuestras encuestas!
                   </Link>
                 </li>

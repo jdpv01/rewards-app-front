@@ -15,13 +15,12 @@ const ForgotPasswordView = lazy(() => import("./views/account/ForgotPassword"));
 const OrdersView = lazy(() => import("./views/account/Orders"));
 const WishlistView = lazy(() => import("./views/account/Wishlist"));
 const NotificationView = lazy(() => import("./views/account/Notification"));
-const MyProfileView = lazy(() => import("./views/account/MyProfile"));
-const ProductListView = lazy(() => import("./views/product/List"));
-const ProductDetailView = lazy(() => import("./views/product/Detail"));
-const StarZoneView = lazy(() => import("./views/product/StarZone"));
-const CartView = lazy(() => import("./views/cart/Cart"));
-const CheckoutView = lazy(() => import("./views/cart/Checkout"));
-const InvoiceView = lazy(() => import("./views/cart/Invoice"));
+const ProfileView = lazy(() => import("./views/account/Profile"));
+const ProductListView = lazy(() => import("./views/promotion/List"));
+const ProductDetailView = lazy(() => import("./views/promotion/Detail"));
+const StarZoneView = lazy(() => import("./views/promotion/StarZone"));
+const FavoriteView = lazy(() => import("./views/points/Favorite"));
+const PointsResume = lazy(() => import("./views/points/PointsResume"));
 const NotFoundView = lazy(() => import("./views/pages/404"));
 const InternalServerErrorView = lazy(() => import("./views/pages/500"));
 const ContactUsView = lazy(() => import("./views/pages/ContactUs"));
@@ -49,7 +48,7 @@ function App() {
               path="/account/forgotpassword"
               element={<ForgotPasswordView/>}
             />
-            <Route exact path="/account/profile" element={<MyProfileView/>} />
+            <Route exact path="/account/profile" element={<ProfileView/>} />
             <Route exact path="/account/orders" element={<OrdersView/>} />
             <Route exact path="/account/wishlist" element={<WishlistView/>} />
             <Route
@@ -60,9 +59,8 @@ function App() {
             <Route exact path="/category" element={<ProductListView/>} />
             <Route exact path="/product/detail" element={<ProductDetailView/>} />
             <Route exact path="/star/zone" element={<StarZoneView/>} />
-            <Route exact path="/cart" element={<CartView/>} />
-            <Route exact path="/checkout" element={<CheckoutView />} />
-            <Route exact path="/invoice" element={<InvoiceView />} />
+            <Route exact path="/favorite" element={<FavoriteView/>} />
+            <Route exact path="/points-resume" element={<PointsResume />} />
             <Route exact path="/contact-us" element={<ContactUsView/>} />
             <Route exact path="/support" element={<SupportView/>} />
             <Route exact path="/blog" element={<BlogView/>} />

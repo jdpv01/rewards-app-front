@@ -11,7 +11,7 @@ const ChangePasswordForm = (props) => {
   return (
     <div className="card border-info">
       <h6 className="card-header bg-info text-white">
-        <IconKey /> Change Password
+        <IconKey /> Cambiar Contraseña
       </h6>
       <div className="card-body">
         <form
@@ -22,7 +22,7 @@ const ChangePasswordForm = (props) => {
           <Field
             name="currentPassword"
             type="password"
-            label="Current Password"
+            label="Contraseña actual"
             component={renderFormGroupField}
             placeholder="******"
             icon={IconShieldLock}
@@ -35,7 +35,7 @@ const ChangePasswordForm = (props) => {
           <Field
             name="password"
             type="password"
-            label="New Password"
+            label="Contraseña nueva"
             component={renderFormGroupField}
             placeholder="******"
             icon={IconShieldLock}
@@ -48,7 +48,7 @@ const ChangePasswordForm = (props) => {
           <Field
             name="confirmPassword"
             type="password"
-            label="Confirm New password"
+            label="Confirmar contraseña nueva"
             component={renderFormGroupField}
             placeholder="******"
             icon={IconShieldLock}
@@ -63,7 +63,7 @@ const ChangePasswordForm = (props) => {
             className="btn btn-info  d-flex"
             disabled={submitting}
           >
-            Submit
+            Actualizar
           </button>
         </form>
       </div>

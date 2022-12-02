@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import { ReactComponent as IconPersonBadgeFill } from "bootstrap-icons/icons/person-badge-fill.svg";
 import { ReactComponent as IconStarFill } from "bootstrap-icons/icons/star-fill.svg";
-import { ReactComponent as IconListCheck } from "bootstrap-icons/icons/list-check.svg";
 import { ReactComponent as IconDoorClosedFill } from "bootstrap-icons/icons/door-closed-fill.svg";
-import { ReactComponent as IconHeartFill } from "bootstrap-icons/icons/heart-fill.svg";
 import { ReactComponent as IconBellFill } from "bootstrap-icons/icons/bell-fill.svg";
 import { ReactComponent as IconInfoCircleFill } from "bootstrap-icons/icons/info-circle-fill.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../context/AuthProvider";
 
 const Header = () => {
+
+  const { auth } = useContext(AuthContext)
+
   return (
     <React.Fragment>
       <header className="p-3 border-bottom bg-light">
@@ -31,7 +33,7 @@ const Header = () => {
             </div>
             <div className="col-md-4">
               <div className="position-relative d-inline me-3">
-                <Link to="/cart" className="btn btn-primary">
+                <Link to="/favorite" className="btn btn-primary">
                   <IconStarFill className="i-va" />
                   <div className="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-circle">
                     {/*2*/}
@@ -92,12 +94,9 @@ const Header = () => {
                     </Link>
                   </li>
                 </ul>
-                <div>
-
-                </div>
               </div>
-              <Link to="/account/signin">Iniciar sesión</Link> |{" "}
-              <Link to="/account/signup"> Registrarse</Link>
+              <Link to="/account/signin" > Iniciar sesión</Link> |{" "}
+              <Link to="/account/signup" > Registrarse</Link>
             </div>
           </div>
         </div>

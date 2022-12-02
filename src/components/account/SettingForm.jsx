@@ -9,31 +9,31 @@ const SettingForm = () => {
   return (
     <div className="card border-danger">
       <h6 className="card-header">
-        <IconGearFill className="text-danger" /> Settiing
+        <IconGearFill className="text-danger" /> Configuración
       </h6>
       <ul className="list-group list-group-flush">
         <li className="list-group-item">
-          <IconBell /> Notification
+          <IconBell /> Notificaciones
           <div className="form-check form-switch float-end">
             <input className="form-check-input" type="checkbox" />
           </div>
         </li>
         <li className="list-group-item">
-          <IconEnvelope /> E-Mail and SMS
+          <IconEnvelope /> Boletín informativo
           <div className="form-check form-switch float-end">
             <input className="form-check-input" type="checkbox" />
           </div>
         </li>
-        <li className="list-group-item">
-          <IconPercent /> Promotional offers E-Mail and SMS
-          <div className="form-check form-switch float-end">
-            <input className="form-check-input" type="checkbox" disabled />
-          </div>
-        </li>
+        {/*<li className="list-group-item">*/}
+        {/*  <IconPercent /> Promotional offers E-Mail and SMS*/}
+        {/*  <div className="form-check form-switch float-end">*/}
+        {/*    <input className="form-check-input" type="checkbox" disabled />*/}
+        {/*  </div>*/}
+        {/*</li>*/}
         <li className="list-group-item bg-danger text-white">
-          <IconTrash /> Delete Account{" "}
+          <IconTrash /> Eliminar cuenta{" "}
           <button type="button" className="btn btn-sm btn-light ms-3">
-            Submit
+            Continuar
           </button>
         </li>
       </ul>

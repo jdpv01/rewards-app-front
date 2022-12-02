@@ -142,7 +142,7 @@ export const data = {
       sku: "FAS-04",
       link: "/product/detail",
       name: "Great product name goes here",
-      img: "../../images/products/tshirt_green_480x400.webp",
+      img: "../../images/products/colgate.png",
       price: 10,
       originPrice: 0,
       discountPrice: 0,

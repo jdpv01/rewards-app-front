@@ -35,7 +35,7 @@ class StarZoneView extends Component {
         {/*        <div className="col">*/}
         {/*          <Link to="/">*/}
         {/*            <img*/}
-        {/*              src="../../images/banner/Dell.webp"*/}
+        {/*              src="../../images/banner/Super-Promo.webp"*/}
         {/*              className="img-fluid rounded"*/}
         {/*              alt="..."*/}
         {/*            />*/}

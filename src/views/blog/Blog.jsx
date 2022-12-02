@@ -25,21 +25,21 @@ class BlogView extends Component {
             <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
               <div className="col p-4 d-flex flex-column position-static">
                 <strong className="d-inline-block mb-2 text-primary">
-                  World
+                  Cuidado personal
                 </strong>
-                <h4 className="mb-0">Featured post</h4>
+                <h4 className="mb-0">Colgate® Luminous White Lovers Vino y Tabaco 70g</h4>
                 <div className="mb-1 text-muted small">Oct 06, 2020</div>
                 <p className="card-text mb-auto">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content.
+                  Colgate® Luminous White Lovers Vino es la pasta de dientes blanqueadora clínicamente comprobada y especialmente desarrollada
+                  para eliminar hasta las manchas difíciles en los dientes* como las causadas por el consumo de vino y tabaco, para una sonrisa más blanca.
                 </p>
                 <Link to="/" className="stretched-link btn btn-sm btn-light">
-                  Continue reading
+                  Leer
                   <IconChevronRight />
                 </Link>
               </div>
               <div className="col-auto d-none d-lg-block">
-                <img src="./../images/blog/nature-thumbnail-1.webp" alt="..." />
+                <img src="./../images/products/luminous-white-vino-es.jpg.rendition.300.300.webp" alt="..." />
               </div>
             </div>
           </div>
@@ -47,21 +47,21 @@ class BlogView extends Component {
             <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
               <div className="col p-4 d-flex flex-column position-static">
                 <strong className="d-inline-block mb-2 text-success">
-                  Design
+                  Cuidado personal
                 </strong>
-                <h4 className="mb-0">Post title</h4>
+                <h4 className="mb-0">Cepillo Dental Colgate® Encías Therapy</h4>
                 <div className="mb-1 text-muted small">Oct 08, 2020</div>
                 <p className="mb-auto">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content.
+                  Para personas que buscan mantener sus encías sanas, el cepillo dental Colgate Encías Therapy masajea suavemente
+                  y ayuda a revitalizar las encías otorgando una limpieza bucal superior y espumante  con +9.800 cerdas suaves multi-nivel.
                 </p>
                 <Link to="/" className="stretched-link btn btn-sm btn-light">
-                  Continue reading
+                  Leer
                   <IconChevronRight />
                 </Link>
               </div>
               <div className="col-auto d-none d-lg-block">
-                <img src="./../images/blog/nature-thumbnail-2.webp" alt="..." />
+                <img src="./../images/products/colgate-encias-therapy-2022.jpg.rendition.300.300.webp" alt="..." />
               </div>
             </div>
           </div>

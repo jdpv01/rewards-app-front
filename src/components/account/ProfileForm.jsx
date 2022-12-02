@@ -7,7 +7,6 @@ import { required, maxLengthMobileNo, minLengthMobileNo, digit, nameValidation, 
 import { ReactComponent as IconPerson } from "bootstrap-icons/icons/person.svg";
 import { ReactComponent as IconPhone } from "bootstrap-icons/icons/phone.svg";
 import { ReactComponent as IconEnvelop } from "bootstrap-icons/icons/envelope.svg";
-import { ReactComponent as IconGeoAlt } from "bootstrap-icons/icons/geo-alt.svg";
 import { ReactComponent as IconCalendarEvent } from "bootstrap-icons/icons/calendar-event.svg";
 import { ReactComponent as IconPersonSquareFill } from "bootstrap-icons/icons/person-lines-fill.svg";
 
@@ -28,7 +27,7 @@ const ProfileForm = (props) => {
     >
       <div className="card border-primary">
         <h6 className="card-header">
-          <IconPersonSquareFill /> Profile Detail
+          <IconPersonSquareFill /> Perfil
         </h6>
         <img
           src={imagePreview ? imagePreview : "../../images/NO_IMG.png"}
@@ -41,20 +40,32 @@ const ProfileForm = (props) => {
             component={renderFormFileInput}
             onImageChange={onImageChange}
             validate={[required]}
-            tips="You don't allow uploading a photo more than 5MB"
+            tips="5MB o menos"
           />
-          <p className="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
+          {/*<p className="card-text">*/}
+          {/*  With supporting text below as a natural lead-in to additional*/}
+          {/*  content.*/}
+          {/*</p>*/}
         </div>
         <ul className="list-group list-group-flush">
+          <li className="list-group-item">
+            <Field
+                name="email"
+                type="email"
+                component={renderFormGroupField}
+                placeholder="Email"
+                icon={IconEnvelop}
+                validate={[required, emailValidation]}
+                required={true}
+                disabled={true}
+            />
+          </li>
           <li className="list-group-item">
             <Field
               name="name"
               type="text"
               component={renderFormGroupField}
-              placeholder="Your name"
+              placeholder="Nombre"
               icon={IconPerson}
               validate={[required, nameValidation]}
               required={true}
@@ -62,10 +73,28 @@ const ProfileForm = (props) => {
           </li>
           <li className="list-group-item">
             <Field
+                name="name"
+                type="text"
+                component={renderFormGroupField}
+                placeholder="Apellido"
+                icon={IconPerson}
+                validate={[required, nameValidation]}
+                required={true}
+            />
+          </li>
+          <li className="list-group-item">
+            <select className="form-select" required name="gender" >
+              <option value>Género</option>
+              <option>Masculino</option>
+              <option>Femenino</option>
+            </select>
+          </li>
+          <li className="list-group-item">
+            <Field
               name="mobileNo"
               type="number"
               component={renderFormGroupField}
-              placeholder="Mobile no without country code"
+              placeholder="Teléfono"
               icon={IconPhone}
               validate={[required, maxLengthMobileNo, minLengthMobileNo, digit]}
               required={true}
@@ -75,37 +104,29 @@ const ProfileForm = (props) => {
           </li>
           <li className="list-group-item">
             <Field
-              name="email"
-              type="email"
-              component={renderFormGroupField}
-              placeholder="Your email"
-              icon={IconEnvelop}
-              validate={[required, emailValidation]}
-              required={true}
-            />
-          </li>
-          <li className="list-group-item">
-            <Field
-              name="location"
+              name="birthdate"
               type="text"
+              onChange={(e) => console.log(e.target.value)}
+              onFocus={(e) => (e.target.type = "date")}
+              onBlur={(e) => (e.target.type = "text")}
               component={renderFormGroupField}
-              placeholder="Your location"
-              icon={IconGeoAlt}
-              validate={[required]}
-              required={true}
-            />
-          </li>
-          <li className="list-group-item">
-            <Field
-              name="dob"
-              type="date"
-              component={renderFormGroupField}
-              placeholder="Your birthdate"
+              placeholder="Fecha de nacimiento"
               icon={IconCalendarEvent}
               validate={[required]}
               required={true}
             />
           </li>
+          {/*<li className="list-group-item">*/}
+          {/*  <Field*/}
+          {/*      name="location"*/}
+          {/*      type="text"*/}
+          {/*      component={renderFormGroupField}*/}
+          {/*      placeholder="Your location"*/}
+          {/*      icon={IconGeoAlt}*/}
+          {/*      validate={[required]}*/}
+          {/*      required={true}*/}
+          {/*  />*/}
+          {/*</li>*/}
         </ul>
         <div className="card-body">
           <button
@@ -113,7 +134,7 @@ const ProfileForm = (props) => {
             className="btn btn-primary  d-flex"
             disabled={submitting}
           >
-            Submit
+            Actualizar
           </button>
         </div>
       </div>
