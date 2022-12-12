@@ -6,16 +6,13 @@ import { useEffect } from "react";
 import UploadFile from "../others/UploadFile";
 import { Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { testProducts } from "./testdata";
 import AuthContext from "../../context/AuthProvider";
-import axios from "../../api/axios";
 
 const UploadInvoicePhoto = () => {
 
   const { data, setData, auth } = useContext(AuthContext);
-  const { accessToken, id: userId } = auth;
-
-  const URL_CREATE_INVOICE = '/invoices/create-invoice';
+  const { chosenStore } = data;
+  const { id: userId } = auth;
 
   const [displayWebcam, setDisplayWebcam] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState();
@@ -75,18 +72,12 @@ const UploadInvoicePhoto = () => {
       return;
     }
     try {
-      let pendingInvoiceFormData = new FormData();
       const invoice = {
-        invoiceImage: currentFileInvoice,
+        invoiceImage: currentFileInvoice ?? {},
         userId: userId,
-        storeId: 'a053803a-1181-4f91-855c-74841d7a2c0c',
+        storeId: chosenStore,
       }
-      /*pendingInvoiceFormData.append('invoiceImage', currentFileInvoice ?? {});
-      pendingInvoiceFormData.append('userId', userId);
-      pendingInvoiceFormData.append('storeId', "a053803a-1181-4f91-855c-74841d7a2c0c");*/
-      //pendingInvoiceFormData.append('promotionIdList', "5e21a137-adfa-4c00-a411-e3c13f18ed7c");
-      setData({...data, invoice});
-      //setData({ ...data, products: testProducts });
+      setData({ ...data, invoice });
       navigate('/choseProduct');
     } catch (err) {
       console.log(err);

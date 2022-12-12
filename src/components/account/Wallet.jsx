@@ -1,12 +1,44 @@
 import React from "react";
-import { Button, Card, Divider, Row } from 'antd';
+import { Button, Card, Divider, message, Row } from 'antd';
 import { DollarCircleOutlined } from '@ant-design/icons';
-import { wallet } from "./testWallet";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "../../api/axios";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthProvider";
 
 const { Meta } = Card;
 
 const Wallet = () => {
+
+  const { auth } = useContext(AuthContext);
+  const { accessToken, id } = auth;
+  const [wallet, setWallet] = useState({});
+  const URL = '/users/get-user';
+
+  useEffect(() => {
+    fetchWalletData();
+  }, []);
+
+  const fetchWalletData = async () => {
+    try {
+      const response = await axios.get(
+        `${URL}?id=${id}`,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      )
+      const { currentPoints, pendingPoints, redeemedPoints } = response.data;
+      setWallet(
+        { 
+          available: currentPoints, 
+          pending: pendingPoints, 
+          redeemed: redeemedPoints 
+        }
+      );
+    } catch (err) {
+      message.error('failed');
+    }
+  }
 
   const navigate = useNavigate();
 

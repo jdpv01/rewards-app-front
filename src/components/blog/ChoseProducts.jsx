@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, List, Row, Select } from "antd";
+import { Button, Col, List, message, Row, Select } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "../../api/axios";
@@ -72,25 +72,26 @@ const ChoseProduct = () => {
   const handleFinish = async () => {
     let { invoice } = data;
     let formData = new FormData();
-    formData.append('invoiceImage', invoice.invoiceImage ?? {});
+    /*formData.append('invoiceImage', invoice.invoiceImage ?? {});
     formData.append('userId', invoice.userId);
     formData.append('storeId', "a053803a-1181-4f91-855c-74841d7a2c0c");
-    formData.append('promotionIdList', "5e21a137-adfa-4c00-a411-e3c13f18ed7c");
-    /*Object.keys(invoice).map(key => {
+    formData.append('promotionIdList', "5e21a137-adfa-4c00-a411-e3c13f18ed7c");*/
+    Object.keys(invoice).map(key => {
       formData.append(key, invoice[key]);
-    })*/
-    console.log(formData);
-    /*selectedProducts.forEach(selProduct => {
+    })
+    selectedProducts.forEach(selProduct => {
       formData.append('promotionIdList', selProduct);
-    });*/
-    //formData.append('promotionIdList', '5e21a137-adfa-4c00-a411-e3c13f18ed7c');
-    console.log(formData);
-    await axios.post(
-      URL_CREATE_INVOICE,
-      formData,
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
-    navigate('/wallet');
+    });
+    try {
+      await axios.post(
+        URL_CREATE_INVOICE,
+        formData,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      navigate('/wallet');
+    } catch (err) {
+      message.error('failed');
+    }
   }
 
   return (
