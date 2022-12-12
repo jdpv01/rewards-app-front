@@ -20,13 +20,13 @@ const TopMenu = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav">
-            <li className="nav-item">
+            {/*<li className="nav-item">
               <Link className="nav-link" to="/category">
                 Acumula!
               </Link>
-            </li>
+            </li>*/}
             <li className="nav-item">
-              <Link className="nav-link" to="/category">
+              <Link className="nav-link" to="/redeem/choseStore">
                 Aliados
               </Link>
             </li>

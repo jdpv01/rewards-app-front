@@ -63,7 +63,7 @@ const Footer = () => {
         <div className="container-fluid bg-dark text-white">
           <div className="row ">
             <div className="col-md-3 py-3">
-              <div className="h6">Company Name</div>
+              <div className="h6">EFIPuntos</div>
               <hr />
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting

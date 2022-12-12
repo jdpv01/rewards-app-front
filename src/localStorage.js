@@ -1,10 +1,11 @@
 export const loadState = () => {
     try {
-      const serializedState = localStorage.getItem("cfstate");
-      if (serializedState === null) {
+      //const serializedState = localStorage.getItem("cfstate");
+      const authJson = localStorage['auth'];
+      if (!authJson) {
         return undefined;
       }
-      return JSON.parse(serializedState);
+      return JSON.parse(authJson);
     } catch (err) {
       return undefined;
     }
@@ -13,7 +14,7 @@ export const loadState = () => {
   export const saveState = (state) => {
     try {
       const serializedState = JSON.stringify(state);
-      localStorage.setItem("cfstate", serializedState);
+      localStorage.setItem("auth", serializedState);
     } catch {
       // ignore write errors
     }
