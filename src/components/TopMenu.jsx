@@ -47,7 +47,7 @@ const TopMenu = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/**">
+                  <Link className="dropdown-item" to="/surveys">
                     Responde nuestras encuestas!
                   </Link>
                 </li>

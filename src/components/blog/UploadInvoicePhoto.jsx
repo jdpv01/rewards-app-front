@@ -15,7 +15,7 @@ const UploadInvoicePhoto = () => {
   const { data, setData, auth } = useContext(AuthContext);
   const { accessToken, id: userId } = auth;
 
-  const URL = '/invoices/create-invoice';
+  const URL_CREATE_INVOICE = '/invoices/create-invoice';
 
   const [displayWebcam, setDisplayWebcam] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState();
@@ -75,16 +75,17 @@ const UploadInvoicePhoto = () => {
       return;
     }
     try {
-      let data = new FormData();
-      data.append('invoiceImage', currentFileInvoice ?? {});
-      data.append('userId', userId);
-      data.append('storeId', "a053803a-1181-4f91-855c-74841d7a2c0c");
-      data.append('promotionIdList', "5e21a137-adfa-4c00-a411-e3c13f18ed7c");
-      await axios.post(
-        URL,
-        data,
-        { headers: { Authorization: `Bearer ${accessToken}` } }
-      );
+      let pendingInvoiceFormData = new FormData();
+      const invoice = {
+        invoiceImage: currentFileInvoice,
+        userId: userId,
+        storeId: 'a053803a-1181-4f91-855c-74841d7a2c0c',
+      }
+      /*pendingInvoiceFormData.append('invoiceImage', currentFileInvoice ?? {});
+      pendingInvoiceFormData.append('userId', userId);
+      pendingInvoiceFormData.append('storeId', "a053803a-1181-4f91-855c-74841d7a2c0c");*/
+      //pendingInvoiceFormData.append('promotionIdList', "5e21a137-adfa-4c00-a411-e3c13f18ed7c");
+      setData({...data, invoice});
       //setData({ ...data, products: testProducts });
       navigate('/choseProduct');
     } catch (err) {
