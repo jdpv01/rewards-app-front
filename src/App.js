@@ -14,6 +14,7 @@ import ChoseStoreForRedeem from "./components/account/ChoseStoreForRedeem";
 import RedeemCode from "./components/account/RedeemCode";
 import Profile from "./components/account/Profile";
 import Publications from "./components/blog/Publications";
+import Surveys from "./components/blog/Surveys";
 const HomeView = lazy(() => import("./views/Home"));
 const SignInView = lazy(() => import("./views/account/SignIn"));
 const SignUpView = lazy(() => import("./views/account/SignUp"));
@@ -55,24 +56,17 @@ function App() {
             <Route exact path="/" element={<HomeView/>} />
             <Route exact path="/account/signin" element={<SignInView/>} />
             <Route exact path="/account/signup" element={<SignUpView/>} />
-            <Route
-              exact
-              path="/account/forgotpassword"
-              element={<ForgotPasswordView/>}
-            />
+            <Route exact path="/account/forgotpassword" element={<ForgotPasswordView/>}/>
             {/*<Route exact path="/account/profile" element={<ProfileView/>} />*/}
             <Route exact path="/account/profile" element={<Profile/>}/>
             <Route exact path="/account/choseStore" element={<ChoseStore/>}/>
             <Route exact path="/account/orders" element={<OrdersView/>} />
             <Route exact path="/account/wishlist" element={<WishlistView/>} />
-            <Route
-              exact
-              path="/account/notification"
-              element={<NotificationView/>}
-            />
+            <Route exact path="/account/notification" element={<NotificationView/>}/>
             <Route exact path="/redeem/code" element={<RedeemCode/>}/>
             <Route exact path="/redeem/choseStore" element={<ChoseStoreForRedeem/>}/>
             <Route exact path="/wallet" element={<Wallet/>}/>
+            <Route exact path="/surveys" element={<Surveys/>}/>
             <Route exact path="/uploadInvoice" element={<UploadInvoicePhoto/>}/>
             <Route exact path="/choseProduct" element={<ChoseProduct/>}/>
             <Route exact path="/category" element={<ProductListView/>} />
