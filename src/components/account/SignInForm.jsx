@@ -1,25 +1,29 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
+import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
+/*import { Field, reduxForm } from "redux-form";
 import { compose } from "redux";
-import {Link, Navigate} from "react-router-dom";
+
 import renderFormGroupField from "../../helpers/renderFormGroupField";
-import {required, maxLength30, minLength8, emailValidation} from "../../helpers/validation";
+import { required, maxLength30, minLength8, emailValidation } from "../../helpers/validation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTwitter, faFacebookF, faGoogle,} from "@fortawesome/free-brands-svg-icons";
+import { faTwitter, faFacebookF, faGoogle, } from "@fortawesome/free-brands-svg-icons";
 import { ReactComponent as IconEnvelope } from "bootstrap-icons/icons/envelope.svg";
-import { ReactComponent as IconShieldLock } from "bootstrap-icons/icons/shield-lock.svg";
-import { useRef, useState, useEffect, useContext } from 'react';
+import { ReactComponent as IconShieldLock } from "bootstrap-icons/icons/shield-lock.svg";*/
+import { useRef, useState, useEffect } from 'react';
+//import { auth, setAuth } from "../others/storageManager";
 import AuthContext from "../../context/AuthProvider";
 import axios from "../../api/axios";
+import { Button, Checkbox, Form, Input, message } from "antd";
 
 const LOGIN_URL = '/auth/sign-in'
 
 const SignInForm = () => {
-  const { setAuth } = useContext(AuthContext)
-  const emailRef = useRef();
+
+  const { setAuth } = useContext(AuthContext);
+  //const emailRef = useRef();
   const errorRef = useRef();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email] = useState('');
+  const [password] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -27,21 +31,21 @@ const SignInForm = () => {
     setErrorMessage('');
   }, [email, password])
 
-  const handleSubmit = async (e) => {
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(LOGIN_URL,
-          JSON.stringify({ email, password }),
-          {
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true
-          }
+        JSON.stringify({ email, password }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        }
       );
       console.log(JSON.stringify(response?.data));
       console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ email, password, roles, accessToken });
+      const accessToken = response?.data?.token;
+      const roles = response?.data?.roleList;
+      setAuth({ email, roles, accessToken });
       setEmail('');
       setPassword('');
       setSuccess(true);
@@ -56,91 +60,118 @@ const SignInForm = () => {
         setErrorMessage('Fallo de inicio de sesión');
       }
     }
+  }*/
+
+  const onFinish = async ({ email, password }) => {
+    try {
+      const response = await axios.post(LOGIN_URL,
+        JSON.stringify({ email, password }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        }
+      );
+      const accessToken = response?.data?.token;
+      const roles = response?.data?.roleList;
+      setAuth({ email, roles, accessToken });
+      setSuccess(true);
+    } catch (err) {
+      if (!err?.response) {
+        setErrorMessage('No hay respuesta del servidor');
+      } else if (err.response?.status === 400) {
+        setErrorMessage('400: Email o contraseña incorrectos');
+      } else if (err.response?.status === 401) {
+        setErrorMessage('401: Cuenta no registrada');
+      } else {
+        setErrorMessage('Fallo de inicio de sesión');
+      }
+    }
+
+  }
+
+  const onFinishFailed = (errorInfo) => {
+    message.error("error");
   }
 
   return (
-      <>
-        {success ? (
-            <Navigate to={"/"} />
-        ) : (
-        <form
-          onSubmit={handleSubmit}
-        >
-          <p ref={errorRef} className={errorMessage ? "errmsg" : "offscreen"}
-             aria-live="assertive">{errorMessage}</p>
-          <Field
-            name="email"
-            type="email "
-            label="Email"
-            ref={emailRef}
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            component={renderFormGroupField}
-            placeholder="Email"
-            icon={IconEnvelope}
-            validate={[required, emailValidation]}
-            required={true}
-            className="mb-3"
-          />
-          <Field
-            name="contraseña"
-            type="password"
-            label="Contraseña"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            component={renderFormGroupField}
-            placeholder="******"
-            icon={IconShieldLock}
-            validate={[required, maxLength30, minLength8]}
-            required={true}
-            maxLength="30"
-            minLength="8"
-            className="mb-3"
-          />
-          <div className="d-grid">
-            <button
-              type="submit"
-              className="btn btn-primary mb-3"
-            >
-              Entrar
-            </button>
-          </div>
-          <Link className="float-start" to="/account/signup" title="Sign Up">
-            Crear una cuenta nueva
-          </Link>
-          <Link
-            className="float-end"
-            to="/account/forgotpassword"
-            title="Forgot Password"
+    <>
+      {success ? (
+        <Navigate to="/"/>
+      ) : (
+        <>
+          <p ref={errorRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage} </p>
+          <Form
+            name="basic"
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="on"
           >
-            Olvidé mi contraseña
-          </Link>
-          <div className="clearfix"></div>
-          <hr></hr>
-          <div className="row">
-            <div className="col- text-center">
-              <p className="text-muted small">Entrar con</p>
-            </div>
-            <div className="col- text-center">
-              <Link to="/" className="btn btn-light text-white bg-twitter me-3">
-                <FontAwesomeIcon icon={faTwitter} />
-              </Link>
-              <Link to="/" className="btn btn-light text-white me-3 bg-facebook">
-                <FontAwesomeIcon icon={faFacebookF} className="mx-1" />
-              </Link>
-              <Link to="/" className="btn btn-light text-white me-3 bg-google">
-                <FontAwesomeIcon icon={faGoogle} className="mx-1" />
-              </Link>
-            </div>
-          </div>
-        </form>
-        )}
-      </>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your username!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item
+              name="remember"
+              valuePropName="checked"
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+        </>
+      )}
+    </>
   );
 };
 
-export default compose(
+export default SignInForm;
+/*export default compose(
   reduxForm({
     form: "signin",
   })
-)(SignInForm);
+)(SignInForm);*/
