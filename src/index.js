@@ -3,10 +3,6 @@ import ReactDOM from "react-dom/client";
 //import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-/*import { createStore } from "redux";
-import { Provider } from "react-redux";
-import rootReducer from "./reducers";
-import { loadState, saveState } from "./localStorage";*/
 import { AuthProvider } from "./context/AuthProvider";
 import './index.css';
 

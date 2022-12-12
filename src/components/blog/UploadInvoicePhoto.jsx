@@ -8,18 +8,23 @@ import { Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { testProducts } from "./testdata";
 import AuthContext from "../../context/AuthProvider";
+import axios from "../../api/axios";
 
 const UploadInvoicePhoto = () => {
 
-  const { data, setData } = useContext(AuthContext);
-  
+  const { data, setData, auth } = useContext(AuthContext);
+  const { accessToken, id: userId } = auth;
+
+  const URL = '/invoices/create-invoice';
+
   const [displayWebcam, setDisplayWebcam] = useState(false);
   const [currentInvoice, setCurrentInvoice] = useState();
+  const [currentFileInvoice, setCurrentFileInvoice] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-    setData({...data, currentInvoice});
-  }, [currentInvoice, data, setData]);
+    setData({ ...data, currentInvoice });
+  }, [currentInvoice]);
 
   const ScreenshotButton = ({ getScreenshot }) => (
     <>
@@ -64,13 +69,27 @@ const UploadInvoicePhoto = () => {
     )
   };
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     if (!currentInvoice) {
       message.error('No se ha cargado ninguna factura');
       return;
     }
-    setData({...data, products: testProducts});
-    navigate('/choseProduct');
+    try {
+      let data = new FormData();
+      data.append('invoiceImage', currentFileInvoice ?? {});
+      data.append('userId', userId);
+      data.append('storeId', "a053803a-1181-4f91-855c-74841d7a2c0c");
+      data.append('promotionIdList', "5e21a137-adfa-4c00-a411-e3c13f18ed7c");
+      await axios.post(
+        URL,
+        data,
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      //setData({ ...data, products: testProducts });
+      navigate('/choseProduct');
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -79,7 +98,7 @@ const UploadInvoicePhoto = () => {
       <br />
       <h1><strong>Subir Factura</strong></h1>
       <br />
-      <UploadFile onUpload={(url) => setCurrentInvoice(url)} />
+      <UploadFile onUpload={(url) => setCurrentInvoice(url)} setFileObj={setCurrentFileInvoice} />
       <br />
       <br />
       <h2>Ó</h2>

@@ -15,9 +15,9 @@ const OptionsList = ({ listItems, optionName, onSubmit }) => {
   return (
     <form onSubmit={onSubmit} style={{ textAlign: "left", margin: "0 auto 0 auto", width: "250px" }}>
       {
-        listItems.map(item => (
+        listItems?.map(item => (
           <div>
-            <input style={{transform: "scale(1.5)" }} type="radio" id={item.id} value={item.value} name={optionName} />
+            <input style={{transform: "scale(1.5)" }} type="radio" id={item.id} value={item.id} name={optionName} />
             &nbsp;&nbsp;&nbsp;&nbsp;
             <label for={item.id}><img src={item.imgPath} alt={item.name} width={80} /></label>
             &nbsp;&nbsp;

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 //import AuthContext from "../context/AuthProvider";
 import { Button, Col, Dropdown, Row, Typography } from 'antd';
-import { BellOutlined, InfoCircleOutlined, LogoutOutlined, StarOutlined, UploadOutlined, UserOutlined } from "@ant-design/icons";
+import { BellOutlined, InfoCircleOutlined, LogoutOutlined, StarOutlined, UploadOutlined, UserOutlined, WalletOutlined } from "@ant-design/icons";
 //import { auth as authX, setAuth as setAuthX } from "./others/storageManager";
 import '../index.css';
 import AuthContext from "../context/AuthProvider";
@@ -74,8 +74,8 @@ const HeaderView = () => {
             type="primary"
             size="large"
             shape="circle"
-            icon={<StarOutlined />}
-            onClick={() => navigate('/favorite')}
+            icon={<WalletOutlined />}
+            onClick={() => navigate('/wallet')}
           />
         </Col>
         <Col>

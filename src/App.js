@@ -13,6 +13,7 @@ import Wallet from "./components/account/Wallet";
 import ChoseStoreForRedeem from "./components/account/ChoseStoreForRedeem";
 import RedeemCode from "./components/account/RedeemCode";
 import Profile from "./components/account/Profile";
+import Publications from "./components/blog/Publications";
 const HomeView = lazy(() => import("./views/Home"));
 const SignInView = lazy(() => import("./views/account/SignIn"));
 const SignUpView = lazy(() => import("./views/account/SignUp"));
@@ -81,7 +82,7 @@ function App() {
             <Route exact path="/points-resume" element={<PointsResume />} />
             <Route exact path="/contact-us" element={<ContactUsView/>} />
             <Route exact path="/support" element={<SupportView/>} />
-            <Route exact path="/blog" element={<BlogView/>} />
+            <Route exact path="/blog" element={<Publications />} />
             <Route exact path="/blog/detail" element={<BlogDetailView/>} />
             <Route exact path="/500" element={<InternalServerErrorView/>} />
             <Route path="*" element={<NotFoundView/>} />

@@ -10,7 +10,7 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const UploadFile = ({ onUpload }) => {
+const UploadFile = ({ onUpload, setFileObj }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
@@ -30,6 +30,7 @@ const UploadFile = ({ onUpload }) => {
   const handleChange = async ({ file }) => {
     if (file.status === 'done') {
       const url = await getBase64(file.originFileObj);
+      setFileObj(file.originFileObj);
       setFileUrl(url);
       onUpload(url);
     }

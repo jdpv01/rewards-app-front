@@ -71,9 +71,10 @@ const SignInForm = () => {
           withCredentials: true
         }
       );
-      const accessToken = response?.data?.token;
-      const roles = response?.data?.roleList;
-      setAuth({ email, roles, accessToken });
+      //const accessToken = response?.data?.token;
+      //const roles = response?.data?.roleList;
+      const { token: accessToken, roles, id } = response?.data;
+      setAuth({ id, email, roles, accessToken });
       setSuccess(true);
     } catch (err) {
       if (!err?.response) {
@@ -170,8 +171,3 @@ const SignInForm = () => {
 };
 
 export default SignInForm;
-/*export default compose(
-  reduxForm({
-    form: "signin",
-  })
-)(SignInForm);*/
