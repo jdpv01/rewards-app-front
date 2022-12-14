@@ -90,9 +90,6 @@ const Wallet = () => {
         {customCards()}
         <Divider />
       </Row>
-      <Row justify="center" >
-        <h4>Recuerda que debes acumular 2000 Efipuntos para poder redimirlos.</h4>
-      </Row>
       <Divider />
       <Row justify="center" >
         <Button size="large" type="primary" onClick={() => navigate('/redeem/choseStore')} >

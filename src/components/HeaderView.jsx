@@ -87,10 +87,10 @@ const HeaderView = () => {
           (Object.keys(auth).length === 0) &&
           <>
             <Col>
-              <Button style={{ width: "70px" }} onClick={() => navigate("/account/signin")} type="default" >Log In</Button>
+              <Button style={{ width: "70px" }} onClick={() => navigate("/account/signin")} type="default" >Entrar</Button>
             </Col>
             <Col>
-              <Button style={{ width: "70px" }} onClick={() => navigate("/account/signup")} type="default" >Sign In</Button>
+              <Button style={{ width: "100px" }} onClick={() => navigate("/account/signup")} type="default" >Registrarse</Button>
             </Col>
           </>
         }

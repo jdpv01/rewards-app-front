@@ -117,12 +117,12 @@ const SignInForm = () => {
             autoComplete="on"
           >
             <Form.Item
-              label="Email"
+              label="Correo electrónico"
               name="email"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your username!',
+                  message: 'Por favor introduzca su correo!',
                 },
               ]}
             >
@@ -130,12 +130,12 @@ const SignInForm = () => {
             </Form.Item>
 
             <Form.Item
-              label="Password"
+              label="Contraseña"
               name="password"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your password!',
+                  message: 'Por favor introduzca su contraseña!',
                 },
               ]}
             >
@@ -150,7 +150,7 @@ const SignInForm = () => {
                 span: 16,
               }}
             >
-              <Checkbox>Remember me</Checkbox>
+              <Checkbox>Recordar</Checkbox>
             </Form.Item>
 
             <Form.Item
@@ -160,7 +160,7 @@ const SignInForm = () => {
               }}
             >
               <Button type="primary" htmlType="submit">
-                Submit
+                Entrar
               </Button>
             </Form.Item>
           </Form>

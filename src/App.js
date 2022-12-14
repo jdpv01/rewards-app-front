@@ -15,9 +15,11 @@ import RedeemCode from "./components/account/RedeemCode";
 import Profile from "./components/account/Profile";
 import Publications from "./components/blog/Publications";
 import Surveys from "./components/blog/Surveys";
+import SignUp from "./components/account/SignUp";
+import RequestReward from "./components/account/RequestReward";
 const HomeView = lazy(() => import("./views/Home"));
 const SignInView = lazy(() => import("./views/account/SignIn"));
-const SignUpView = lazy(() => import("./views/account/SignUp"));
+//const SignUpView = lazy(() => import("./views/account/SignUp"));
 const ForgotPasswordView = lazy(() => import("./views/account/ForgotPassword"));
 const OrdersView = lazy(() => import("./views/account/Orders"));
 const WishlistView = lazy(() => import("./views/account/Wishlist"));
@@ -55,7 +57,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomeView/>} />
             <Route exact path="/account/signin" element={<SignInView/>} />
-            <Route exact path="/account/signup" element={<SignUpView/>} />
+            <Route exact path="/account/signup" element={<SignUp/>} />
+            <Route exact path="/account/requestreward" element={<RequestReward/>}/>
             <Route exact path="/account/forgotpassword" element={<ForgotPasswordView/>}/>
             {/*<Route exact path="/account/profile" element={<ProfileView/>} />*/}
             <Route exact path="/account/profile" element={<Profile/>}/>
@@ -63,7 +66,7 @@ function App() {
             <Route exact path="/account/orders" element={<OrdersView/>} />
             <Route exact path="/account/wishlist" element={<WishlistView/>} />
             <Route exact path="/account/notification" element={<NotificationView/>}/>
-            <Route exact path="/redeem/code" element={<RedeemCode/>}/>
+            <Route exact path="/redeem/code" element={<RequestReward/>}/>
             <Route exact path="/redeem/choseStore" element={<ChoseStoreForRedeem/>}/>
             <Route exact path="/wallet" element={<Wallet/>}/>
             <Route exact path="/surveys" element={<Surveys/>}/>

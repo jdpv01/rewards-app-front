@@ -70,9 +70,9 @@ class HomeView extends Component {
           <div className="row g-3">
             <div className="col-md-9">
               
-              <Support />
+              {/*<Support />*/}
             </div>
-            <div className="col-md-3">
+            <div style={{textAlign:"center"}}>
               <CardLogin className="mb-3" />
               
             </div>
@@ -81,15 +81,15 @@ class HomeView extends Component {
         <div className="container-fluid bg-light mb-3">
           <div className="row">
             <div className="col-md-12">
-              <CardDealsOfTheDay
+              {/*<CardDealsOfTheDay
                 endDate={Date.now() + 1000 * 60 * 60 * 14}
                 title="Deals of the Day"
                 to="/"
-              >
+              >*/}
                 <Carousel id="elect-product-category1">
                   {carouselContent}
                 </Carousel>
-              </CardDealsOfTheDay>
+              {/*</CardDealsOfTheDay>*/}
             </div>
           </div>
         </div>

@@ -1,16 +1,37 @@
-import { Button, Card, Divider, Row } from "antd";
-import React from "react";
+import { Button, Card, Divider, message, Row } from "antd";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../../api/axios";
 import AuthContext from "../../context/AuthProvider";
 
 const ChoseStoreForRedeem = () => {
 
-  const { data, setData } = useContext(AuthContext);
+  const { data, setData, auth } = useContext(AuthContext);
+  const [storesInfo, setStoresInfo] = useState([]);
+  const { accessToken } = auth;
   const navigate = useNavigate();
+  const URL = '/stores/get-all-stores';
   
 
-  const storesInfo = [
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(
+        URL,
+        { headers: { Authorization: `Bearer ${accessToken}` } },
+      );
+      setStoresInfo(res.data);
+    } catch (err) {
+      message.error('Error al solicitar las tiendas!')
+    }
+  }
+
+  /*const storesInfo = [
     {
       id: "exito",
       name: "Exito",
@@ -24,9 +45,14 @@ const ChoseStoreForRedeem = () => {
     {
       id: "mercamio",
       name: "Mercamio",
-      img: "https://domiciliomercamio.com/static/media/logo.cfffb0b9.svg",
+      img: "https://mercamio.com/static/media/logo.8d115182.svg",
     },
-  ]
+  ]*/
+
+  const onRedeem = async (name) => {
+    setData({ ...data, storeToRedeem: name });
+    navigate('/redeem/code');
+  }
 
   const cardsList = () => {
     return storesInfo.map((storeInfo) => (
@@ -40,16 +66,13 @@ const ChoseStoreForRedeem = () => {
                 <img
                   width="200px"
                   alt="store-logo"
-                  src={storeInfo.img}
+                  src={storeInfo.image}
                 />
               </Row>
             }
             actions={[
               <Button
-                onClick={() => {
-                  setData({...data, storeToRedeem: storeInfo.id});
-                  navigate('/redeem/code');
-                }}
+                onClick={() => onRedeem(storeInfo.name)}
                 key="redeem">Redimir</Button>,
             ]}
           />
